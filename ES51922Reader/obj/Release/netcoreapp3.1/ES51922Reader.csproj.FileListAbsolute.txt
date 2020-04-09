@@ -1,0 +1,9 @@
+/Users/r900887/Projects/ES51922Reader/ES51922Reader/bin/Release/netcoreapp3.1/ES51922Reader.deps.json
+/Users/r900887/Projects/ES51922Reader/ES51922Reader/bin/Release/netcoreapp3.1/ES51922Reader.dll
+/Users/r900887/Projects/ES51922Reader/ES51922Reader/bin/Release/netcoreapp3.1/ES51922Reader.pdb
+/Users/r900887/Projects/ES51922Reader/ES51922Reader/obj/Release/netcoreapp3.1/ES51922Reader.csprojAssemblyReference.cache
+/Users/r900887/Projects/ES51922Reader/ES51922Reader/obj/Release/netcoreapp3.1/ES51922Reader.csproj.CoreCompileInputs.cache
+/Users/r900887/Projects/ES51922Reader/ES51922Reader/obj/Release/netcoreapp3.1/ES51922Reader.AssemblyInfoInputs.cache
+/Users/r900887/Projects/ES51922Reader/ES51922Reader/obj/Release/netcoreapp3.1/ES51922Reader.AssemblyInfo.cs
+/Users/r900887/Projects/ES51922Reader/ES51922Reader/obj/Release/netcoreapp3.1/ES51922Reader.dll
+/Users/r900887/Projects/ES51922Reader/ES51922Reader/obj/Release/netcoreapp3.1/ES51922Reader.pdb
