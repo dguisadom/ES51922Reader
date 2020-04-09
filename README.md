@@ -10,8 +10,9 @@ This library provides the capability to read the serial data of ES51922 based DM
 On this source you can find a console application as an example of the library usage.
 
 When you instance MeasureReader class it automaticalle starts reading data blocks on the indicated port
-  reader = new ES51922MeasureReader(portName);
-  reader.MeasureReceived += Reader_MeasureReceived;
+    
+    reader = new ES51922MeasureReader(portName);
+    reader.MeasureReceived += Reader_MeasureReceived;
 
 # CHANGELOG.
 
