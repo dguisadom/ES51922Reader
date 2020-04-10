@@ -1,24 +1,26 @@
-﻿using System;
-using System.Runtime.Serialization;
-
-namespace ES51922Reader.Exceptions
+﻿namespace ES51922Reader.Exceptions
 {
-    public class PartialBlockException: Exception
+    using System;
+    using System.Runtime.Serialization;
+    using Types;
+
+    public class PartialBlockException : Exception
     {
-        public PartialBlockException() 
+        public Byte[] PartialMeasureData { get; private set; }
+
+        public PartialBlockException(string message, Byte[] partialMeasureData) : base(message)
         {
+            PartialMeasureData = partialMeasureData;
         }
 
-        public PartialBlockException(string message) : base(message)
+        public PartialBlockException(string message, Exception innerException, Byte[] partialMeasureData) : base(message, innerException)
         {
+            PartialMeasureData = partialMeasureData;
         }
 
-        public PartialBlockException(string message, Exception innerException) : base(message, innerException)
+        protected PartialBlockException(SerializationInfo info, StreamingContext context, Byte[] partialMeasureData) : base(info, context)
         {
-        }
-
-        protected PartialBlockException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
+            PartialMeasureData = partialMeasureData;
         }
     }
 }
