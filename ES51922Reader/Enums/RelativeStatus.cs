@@ -4,7 +4,7 @@ namespace ES51922Reader.Enums
     /// <summary>
     /// Represent posible relative status (Option 1 Byte of the documentation)
     /// </summary>
-    public enum RelativeStatus
+    internal enum RelativeStatus
     {
         /// <summary>
         /// Indicates if RMR status is present

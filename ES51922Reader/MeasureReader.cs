@@ -1,25 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using ES51922Reader.Exceptions;
-using ES51922Reader.Reader;
-using ES51922Reader.Types;
-
-namespace ES51922Reader
+﻿namespace ES51922Reader
 {
+    using System;
+    using System.IO.Ports;
+    using Exceptions;
+    using Reader;
+    using Types;
+
     public class MeasureReader
     {
-        private readonly string PortName;
         private readonly SerialReader reader;
         public event EventHandler<MeasureReceivedEventArg> MeasureReceived;
-        //TODO Replace with custom event Arg
         public event EventHandler<PartialBlockEventArgs> WrongBlockReceived;
 
         public MeasureReader(string portName)
         {
-            PortName = portName;
             reader = new SerialReader(portName);
             reader.BlockReceived += Reader_BlockReceived;
+            reader.ReadError += Reader_ReadError;
             reader.StartReading();
+        }
+
+        private void Reader_ReadError(object sender, SerialErrorReceivedEventArgs e)
+        {
+            throw new ReadException(ErrorMessages.ERROR_READING);
         }
 
         private void Reader_BlockReceived(object sender, Types.DataBlockEventArgs e)
@@ -29,14 +32,20 @@ namespace ES51922Reader
                 var measureBlock = new MeasureBlock(e.RawMeasureBlock);
                 MeasureReceived?.Invoke(this, new MeasureReceivedEventArg()
                 {
-                    measureBlock = measureBlock
+                    MeasureBlock = measureBlock
                 });
-            }catch(PartialBlockException ex)
+
+            }
+            catch(PartialBlockException ex)
             {
-                
+                WrongBlockReceived?.Invoke(this, new PartialBlockEventArgs(e.RawMeasureBlock.DataBlock,ex.Message));
             }
         }
 
+        public void Stop()
+        {
+            reader.SerialPort.Close();
+        }
 
     }
 }

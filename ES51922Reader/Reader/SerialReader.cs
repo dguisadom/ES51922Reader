@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO.Ports;
-using System.Linq;
+using ES51922Reader.Exceptions;
 using ES51922Reader.Types;
 
 namespace ES51922Reader.Reader
 {
-    public class SerialReader
+    internal class SerialReader
     {
         private const int BAUD_RATE = 19200;
         private const Parity PARITY = Parity.Odd;
@@ -19,8 +18,8 @@ namespace ES51922Reader.Reader
         public SerialPort SerialPort { get; private set; }
 
         public event EventHandler<DataBlockEventArgs> BlockReceived;
-        public event EventHandler<PartialBlockEventArgs> PartialBlockReceived;
         public event EventHandler<SerialErrorReceivedEventArgs> ReadError;
+        public event EventHandler<PartialBlockEventArgs> PartialBlockReceived;
 
         public SerialReader(string portName)
         {
@@ -60,10 +59,7 @@ namespace ES51922Reader.Reader
             }
             else
             {
-                PartialBlockReceived?.Invoke(this, new PartialBlockEventArgs()
-                {
-                    DataBlock = buffer
-                });
+                PartialBlockReceived?.Invoke(this, new PartialBlockEventArgs(buffer, ErrorMessages.WRONG_MEASURE_DATA));
             }
 
         }

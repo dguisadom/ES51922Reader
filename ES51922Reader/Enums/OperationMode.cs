@@ -4,7 +4,7 @@ namespace ES51922Reader.Enums
     /// <summary>
     /// Represent information about the DMM operation mode (Option 3 Byte of the documentation)
     /// </summary>
-    public enum OperationMode
+    internal enum OperationMode
     {
         /// <summary>
         /// Represent frequency measurement.

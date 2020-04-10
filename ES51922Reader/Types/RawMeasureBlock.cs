@@ -3,7 +3,7 @@ namespace ES51922Reader.Types
 {
     public class RawMeasureBlock
     {
-
+        public Byte[] DataBlock { get; private set; }
         public Byte Range { get; private set; }
         public Byte Digit4 { get; private set; }
         public Byte Digit3 { get; private set; }
@@ -20,6 +20,7 @@ namespace ES51922Reader.Types
 
         public RawMeasureBlock(Byte[] dataBlock)
         {
+            DataBlock = dataBlock;
             Range = dataBlock[0];
             Digit4 = dataBlock[1];
             Digit3 = dataBlock[2];

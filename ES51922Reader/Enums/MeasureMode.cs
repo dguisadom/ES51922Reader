@@ -1,7 +1,7 @@
 ﻿using System;
 namespace ES51922Reader.Enums
 {
-    public enum MeasureMode
+    internal enum MeasureMode
     {
         Voltage = 59,
         AutouACurrent = 61,

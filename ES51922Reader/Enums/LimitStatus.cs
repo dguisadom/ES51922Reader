@@ -4,7 +4,7 @@ namespace ES51922Reader.Enums
     /// <summary>
     /// Represent information about the DDM limits states (option 2 byte on the documentation)
     /// </summary>
-    public enum LimitStatus
+    internal enum LimitStatus
     {
         /// <summary>
         /// Represent minimum peak value measurement

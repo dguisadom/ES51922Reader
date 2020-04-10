@@ -1,4 +1,5 @@
-# ES51922Reader Version: 0.1.0 a
+
+# ES51922Reader Version: 0.2.0 b
 
 
 This is a .Net Core library for read ES51922 based DMMs.
@@ -16,6 +17,14 @@ When you instance MeasureReader class it automaticalle starts reading data block
 
 # CHANGELOG.
 
-* 0.1.0 a (09/April/2020): First Release alpha. Provides all measure capabilities, but the code is so messy and it's poor tested.
+* 0.2.0 b (10/April/2020): 
+	* Improve code stability. Change access modifiers from public to internal.
+	* Added wrong data block control.
+	* Added wrong data block event.
+	* Improved example console app.
+	* Added error messages constant class.
+	* Added ReadingException throwed when an error reading serial port.
+	
+* 0.1.0 a (09/April/2020): First alpha Release. Provides all measure capabilities, but the code is so messy and it's poor tested.
 
 Copyright David Guisado 2020.

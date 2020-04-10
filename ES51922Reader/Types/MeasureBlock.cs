@@ -1,12 +1,12 @@
-﻿using System;
-using ES51922Reader.Enums;
-using ES51922Reader.Exceptions;
-
+﻿
 namespace ES51922Reader.Types
 {
+    using Enums;
+    using Exceptions;
+
     public class MeasureBlock
     {
-        private RawMeasureBlock rawBlock;
+        private readonly RawMeasureBlock rawBlock;
         private int rangeDivider = 1;
 
         public double Value { get; private set; }
@@ -25,8 +25,6 @@ namespace ES51922Reader.Types
 
             ProcessValue();
         }
-
-
 
         private void ProcessValue()
         {
@@ -129,7 +127,7 @@ namespace ES51922Reader.Types
                         break;
                     }
                 default:
-                    throw new InvalidOperationException("Wrong block data");
+                    throw new PartialBlockException(ErrorMessages.WRONG_MEASURE_MODE,rawBlock.DataBlock);
             }
         }
 
@@ -216,9 +214,15 @@ namespace ES51922Reader.Types
                     }
                 default:
                     {
-                        throw new PartialBlockException("Wrong Data block");
+                        RangeError();
+                        break;
                     }
             }
+        }
+
+        private void RangeError()
+        {
+            throw new PartialBlockException(ErrorMessages.WRONG_RANGE_FOR_MEASURE_MODE, rawBlock.DataBlock);
         }
 
         private void ProcessFrecuencyRange()
@@ -269,7 +273,8 @@ namespace ES51922Reader.Types
                     }
                 default:
                     {
-                        throw new PartialBlockException("Wrong Data block");
+                        RangeError();
+                        break;
                     }
             }
         }
@@ -330,7 +335,8 @@ namespace ES51922Reader.Types
                         }
                     default:
                         {
-                            throw new PartialBlockException("Wrong Data block");
+                            RangeError();
+                            break;
                         }
                 }
             }
@@ -378,7 +384,8 @@ namespace ES51922Reader.Types
                         }
                     default:
                         {
-                            throw new PartialBlockException("Wrong Data block");
+                            RangeError();
+                            break;
                         }
                 }
             }
@@ -426,7 +433,8 @@ namespace ES51922Reader.Types
                         }
                     default:
                         {
-                            throw new PartialBlockException("Wrong Data block");
+                            RangeError();
+                            break;
                         }
                 }
             }
@@ -459,7 +467,8 @@ namespace ES51922Reader.Types
                         }
                     default:
                         {
-                            throw new PartialBlockException("Wrong Data block");
+                            RangeError();
+                            break;
                         }
                 }
                 Unit = Status.VBAR ? UnitType.A: unitType;

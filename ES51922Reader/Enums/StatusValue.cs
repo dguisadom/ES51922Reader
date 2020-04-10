@@ -4,7 +4,7 @@ namespace ES51922Reader.Enums
     /// <summary>
     /// Represent posible Status values. (Status byte of the documentation
     /// </summary>
-    public enum StatusValue
+    internal enum StatusValue
     {
         /// <summary>
         ///
