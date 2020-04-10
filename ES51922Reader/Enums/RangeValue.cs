@@ -1,7 +1,7 @@
 ﻿using System;
 namespace ES51922Reader.Enums
 {
-    public enum RangeValue
+    internal enum RangeValue
     {
         First = 48,
         Second = 49,

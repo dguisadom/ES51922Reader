@@ -3,6 +3,6 @@ namespace ES51922Reader.Types
 {
     public class MeasureReceivedEventArg
     {
-        public MeasureBlock measureBlock { get; set; }
+        public MeasureBlock MeasureBlock { get; set; }
     }
 }

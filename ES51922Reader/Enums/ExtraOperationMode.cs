@@ -4,7 +4,7 @@ namespace ES51922Reader.Enums
     /// <summary>
     /// Represent information about the DMM extra operation mode (Option 4 Byte of the documentation)
     /// </summary>
-    public enum ExtraOperationMode
+    internal enum ExtraOperationMode
     {
         /// <summary>
         /// Indicates that low-pass-filter function is active.
