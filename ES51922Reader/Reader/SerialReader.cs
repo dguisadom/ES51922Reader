@@ -64,10 +64,6 @@ namespace ES51922Reader.Reader
 
         }
 
-        public void StartReading()
-        {
-            SerialPort.Open();
-        }
     }
 }
 

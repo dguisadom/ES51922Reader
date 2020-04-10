@@ -1,5 +1,5 @@
 
-# ES51922Reader Version: 0.2.0 b
+# ES51922Reader Version: 0.2.1 b
 
 
 This is a .Net Core library for read ES51922 based DMMs.
@@ -12,10 +12,14 @@ On this source you can find a console application as an example of the library u
 
 When you instance MeasureReader class it automaticalle starts reading data blocks on the indicated port
     
-    reader = new ES51922MeasureReader(portName);
+    reader = new MeasureReader(portName);
     reader.MeasureReceived += Reader_MeasureReceived;
 
 # CHANGELOG.
+
+* 0.2.0 b (10/April/2020):
+    * Fix port close and open
+    * Added code comments
 
 * 0.2.0 b (10/April/2020): 
 	* Improve code stability. Change access modifiers from public to internal.

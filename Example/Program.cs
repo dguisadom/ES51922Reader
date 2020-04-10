@@ -31,6 +31,7 @@ namespace Example
                     Console.WriteLine("No data available");
                 }
             }
+            reader.Stop();
         }
 
         private static void Reader_WrongBlockReceived(object sender, PartialBlockEventArgs e)

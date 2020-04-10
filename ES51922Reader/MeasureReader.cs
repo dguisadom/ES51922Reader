@@ -17,12 +17,16 @@
             reader = new SerialReader(portName);
             reader.BlockReceived += Reader_BlockReceived;
             reader.ReadError += Reader_ReadError;
-            reader.StartReading();
         }
 
         private void Reader_ReadError(object sender, SerialErrorReceivedEventArgs e)
         {
             throw new ReadException(ErrorMessages.ERROR_READING);
+        }
+
+        public void Start()
+        {
+            reader.SerialPort.Open();
         }
 
         private void Reader_BlockReceived(object sender, Types.DataBlockEventArgs e)
