@@ -1,5 +1,5 @@
 
-# ES51922Reader Version: 0.2.1 b
+# ES51922Reader Version: 0.3.0 b
 
 
 This is a .Net Core library for read ES51922 based DMMs.
@@ -13,13 +13,32 @@ On this source you can find a console application as an example of the library u
 When you instance MeasureReader class it automaticalle starts reading data blocks on the indicated port
     
     reader = new MeasureReader(portName);
-    reader.MeasureReceived += Reader_MeasureReceived;
+    reader.MeasureReceived += Reader_MeasureReceived; // Invoked when a measure block is received and processed
+    reader.WrongBlockReceived += Reader_WrongBlockReceived; // Invoked when a measure block is receved and can't process it
+    reader.ErrorReading += Reader_ErrorReading; // Invoked when an error occurs reading from serial port.
+    reader.Start();
+
+# BE MY PATREON.
+
+Help me to continue coding.
+
+https://www.patreon.com/dguisadom
+
+# EXAMPLE CONSOLE APP.
+
+![Exaple APP](https://thumbs.gfycat.com/WellgroomedFrequentBabirusa-small.gif)
+
+This solution includes a console app project with an example implementation.
 
 # CHANGELOG.
 
-* 0.2.0 b (10/April/2020):
-    * Fix port close and open
-    * Added code comments
+* 0.3.0 b (10/April/2020):
+    * Improve stability
+    * Fix serial port open and close methods.
+    * Fix WrongBlockReceived event.
+    * Add WrongBlockReceived example implementation.
+    * Added some code comments.
+    * Added Cyrustek ES51922 official datasheet.
 
 * 0.2.0 b (10/April/2020): 
 	* Improve code stability. Change access modifiers from public to internal.

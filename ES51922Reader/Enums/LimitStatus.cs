@@ -2,20 +2,20 @@
 namespace ES51922Reader.Enums
 {
     /// <summary>
-    /// Represent information about the DDM limits states (option 2 byte on the documentation)
+    /// Represents information about the DDM limits states (option 2 byte on the documentation)
     /// </summary>
     internal enum LimitStatus
     {
         /// <summary>
-        /// Represent minimum peak value measurement
+        /// Represents minimum peak value measurement
         /// </summary>
         PMIN = 2,
         /// <summary>
-        /// Represent maximum peak valuemeasurement
+        /// Represents maximum peak value measurement
         /// </summary>
         PMAX = 4,
         /// <summary>
-        /// Represent Underlevel measurement
+        /// Represents Underlevel measurement oparation
         /// </summary>
         UL = 8
     }
