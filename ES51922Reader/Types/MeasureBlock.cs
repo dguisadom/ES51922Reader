@@ -1,20 +1,34 @@
-﻿
-namespace ES51922Reader.Types
+﻿namespace ES51922Reader.Types
 {
     using Enums;
     using Exceptions;
-
+    /// <summary>
+    /// Represents a Measure block from Cyrustek ES51922
+    /// </summary>
     public class MeasureBlock
     {
         private readonly RawMeasureBlock rawBlock;
         private int rangeDivider = 1;
 
+        /// <summary>
+        /// Gets the measure value
+        /// </summary>
         public double Value { get; private set; }
+        /// <summary>
+        /// Gets the measure unit
+        /// </summary>
         public UnitType Unit { get; private set; }
+        /// <summary>
+        /// Gets the measure type
+        /// </summary>
         public MeasureType MeasureType { get; private set; }
         public Status Status { get; private set; }
 
 
+        /// <summary>
+        /// Returns a <see cref="MeasureBlock" instance/>
+        /// </summary>
+        /// <param name="rawMeasureBlock">Raw measure block to fill the measure</param>
         public MeasureBlock(RawMeasureBlock rawMeasureBlock)
         {
             rawBlock = rawMeasureBlock;
@@ -26,6 +40,9 @@ namespace ES51922Reader.Types
             ProcessValue();
         }
 
+        /// <summary>
+        /// Process the measure blocks related to the digits to fill the measure value
+        /// </summary>
         private void ProcessValue()
         {
             double unprocessedValue = 0;
@@ -38,6 +55,9 @@ namespace ES51922Reader.Types
             Value = unprocessedValue / rangeDivider;
         }
 
+        /// <summary>
+        /// Process the measure blocks related to DMM measure mode to identify it
+        /// </summary>
         private void ProcessMeasureModeAndUnit()
         {
             switch (rawBlock.Function)
@@ -90,7 +110,7 @@ namespace ES51922Reader.Types
                 case (byte)MeasureMode.Continuity:
                     {
                         MeasureType = MeasureType.Continuity;
-                        Unit = UnitType.Ohms;
+                        Unit = UnitType.Ohm;
                         rangeDivider = 100;
                         break;
                     }
@@ -127,7 +147,7 @@ namespace ES51922Reader.Types
                         break;
                     }
                 default:
-                    throw new PartialBlockException(ErrorMessages.WRONG_MEASURE_MODE,rawBlock.DataBlock);
+                    throw new PartialBlockException(ErrorMessages.WRONG_MEASURE_MODE, rawBlock.DataBlock);
             }
         }
 
@@ -137,7 +157,7 @@ namespace ES51922Reader.Types
             Status = new Status();
             Status.Judge = ((rawBlock.Status & (byte)StatusValue.Judge) != 0);
             Status.MinusSign = ((rawBlock.Status & (byte)StatusValue.Sign) != 0);
-            Status.BatteryLow = ((rawBlock.Status & (byte)StatusValue.BATT) != 0);
+            Status.LowBattery = ((rawBlock.Status & (byte)StatusValue.BATT) != 0);
             Status.InputOverload = ((rawBlock.Status & (byte)StatusValue.OL) != 0);
 
             Status.MaximumValue = ((rawBlock.Option1 & (byte)RelativeStatus.MAX) != 0);
@@ -268,7 +288,7 @@ namespace ES51922Reader.Types
                 case (byte)RangeValue.Eighth:
                     {
                         rangeDivider = 100;
-                        Unit = UnitType.MHz ;
+                        Unit = UnitType.MHz;
                         break;
                     }
                 default:
@@ -294,43 +314,43 @@ namespace ES51922Reader.Types
                     case (byte)RangeValue.First:
                         {
                             rangeDivider = 100;
-                            Unit = UnitType.Ohms;
+                            Unit = UnitType.Ohm;
                             break;
                         }
                     case (byte)RangeValue.Second:
                         {
                             rangeDivider = 10000;
-                            Unit = UnitType.KOhms;
+                            Unit = UnitType.KOhm;
                             break;
                         }
                     case (byte)RangeValue.Third:
                         {
                             rangeDivider = 1000;
-                            Unit = UnitType.KOhms;
+                            Unit = UnitType.KOhm; 
                             break;
                         }
                     case (byte)RangeValue.Fourth:
                         {
                             rangeDivider = 100;
-                            Unit = UnitType.KOhms;
+                            Unit = UnitType.KOhm;
                             break;
                         }
                     case (byte)RangeValue.Fifth:
                         {
                             rangeDivider = 10000;
-                            Unit = UnitType.MOhms;
+                            Unit = UnitType.MOhm;
                             break;
                         }
                     case (byte)RangeValue.Sixth:
                         {
                             rangeDivider = 1000;
-                            Unit = UnitType.MOhms;
+                            Unit = UnitType.MOhm;
                             break;
                         }
                     case (byte)RangeValue.Seventh:
                         {
                             rangeDivider = 100;
-                            Unit = UnitType.MOhms;
+                            Unit = UnitType.MOhm;
                             break;
                         }
                     default:
@@ -457,7 +477,7 @@ namespace ES51922Reader.Types
                 {
                     case (byte)RangeValue.First:
                         {
-                            rangeDivider = 100*(unitType == UnitType.mA ? 10:1);
+                            rangeDivider = 100 * (unitType == UnitType.mA ? 10 : 1);
                             break;
                         }
                     case (byte)RangeValue.Second:
@@ -471,7 +491,7 @@ namespace ES51922Reader.Types
                             break;
                         }
                 }
-                Unit = Status.VBAR ? UnitType.A: unitType;
+                Unit = Status.VBAR ? UnitType.A : unitType;
             }
         }
     }

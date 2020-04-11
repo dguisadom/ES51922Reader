@@ -2,7 +2,7 @@
 namespace ES51922Reader.Enums
 {
     /// <summary>
-    /// Represent information about the DMM extra operation mode (Option 4 Byte of the documentation)
+    /// Represents information about the DMM extra operation mode (Option 4 Byte of the documentation)
     /// </summary>
     internal enum ExtraOperationMode
     {
