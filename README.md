@@ -37,9 +37,9 @@ This solution includes a console app project with an example implementation.
 * 0.3.0 b (10/April/2020):
 	* Improve stability
 	* Fix serial port open and close methods.
-    	* Fix WrongBlockReceived event.
-    	* Add WrongBlockReceived example implementation.
-    	* Added some code comments.
+	* Fix WrongBlockReceived event.
+	* Add WrongBlockReceived example implementation.
+	* Added some code comments.
 	* Added Cyrustek ES51922 official datasheet.
 
 * 0.2.0 b (10/April/2020): 
